@@ -1,0 +1,62 @@
+<div  style="margin: 50px; padding: 50px" class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form #form="ngForm">
+        <div>
+
+          <!-- schoolname control -->
+          <div class="form-group">
+            <label class="col-form-label">SchoolName</label>
+            <!-- registering the control in angular by using tda
+            you have to use ngmodel directive -->
+            <!-- ngmodel  formmodule int the appmodule -->
+
+            <!-- ngModel we are going to the the details about the contorl -->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter the Schoolname"
+              ngModel
+              name="schoolName"
+            />
+          </div>
+         
+          <!-- prinicple control -->
+            <div class="form-group">
+              <label class="col-form-label">Principle Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the PrinicipleName"
+                ngModel
+                name="PrinicipleName"
+                #principle
+              />
+            </div>
+
+          <!-- button code -->
+          <div class="form-group" style="margin-top: 20px">
+            <!-- <button 
+            (click)="evtClick(school)"
+             class="btn btn-primary">Click</button> -->
+
+            <button 
+            (click)="evtClick(form)" 
+            class="btn btn-primary">
+              Click
+            </button>
+
+            <!-- button type submit -->
+            <!-- if you want to submit the form
+            through the button we have to use button type
+            submit -->
+
+
+
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
