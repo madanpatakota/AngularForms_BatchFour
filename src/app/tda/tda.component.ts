@@ -31,5 +31,9 @@ export class TdaComponent implements OnInit {
     console.log(form);
   }
 
+  // ex : textbox you are expecting atleast 4 charcters
+  // but user might be given 2 charcterfs
+  // minlenght maxlength pattern (email , numbers)
+  // Please enter atleast 4 charcters
 
 }
