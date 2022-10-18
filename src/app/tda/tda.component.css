@@ -1,0 +1,10 @@
+
+/* input.ng-pristine.ng-valid.ng-touched{
+    border:2px #9d3b3b solid;
+} */
+
+input.ng-pristine.ng-invalid.ng-touched{
+    border:2px #9d3b3b solid;
+}
+
+

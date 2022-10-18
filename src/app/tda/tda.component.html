@@ -1,7 +1,7 @@
 <div  style="margin: 50px; padding: 50px" class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form #form="ngForm">
+      <form (ngSubmit)="evtSubmit(form)" #form="ngForm">
         <div>
 
           <!-- schoolname control -->
@@ -11,14 +11,25 @@
             you have to use ngmodel directive -->
             <!-- ngmodel  formmodule int the appmodule -->
 
+           
             <!-- ngModel we are going to the the details about the contorl -->
+            <!-- touch and pristine is true -->
+
+            <!-- Q) what are the built-in validators are available in html?
+            A : required -->
+
             <input
               type="text"
               class="form-control"
               placeholder="Enter the Schoolname"
               ngModel
               name="schoolName"
+              #schoolName = "ngModel"
+              required
             />
+            <small style="color:#9d3b3b"
+              *ngIf="schoolName.touched && schoolName.pristine">
+              Please enter the SchoolName</small>
           </div>
          
           <!-- prinicple control -->
@@ -30,8 +41,10 @@
                 placeholder="Enter the PrinicipleName"
                 ngModel
                 name="PrinicipleName"
-                #principle
+                #principle = "ngModel"
               />
+              <small style="color:#9d3b3b" *ngIf="principle.touched && principle.pristine">
+                Please enter the Principle name</small>
             </div>
 
           <!-- button code -->
@@ -40,11 +53,14 @@
             (click)="evtClick(school)"
              class="btn btn-primary">Click</button> -->
 
-            <button 
+            <!-- <button 
             (click)="evtClick(form)" 
             class="btn btn-primary">
               Click
-            </button>
+            </button> -->
+
+
+            <button class="btn btn-primary" type="submit">Submit</button>
 
             <!-- button type submit -->
             <!-- if you want to submit the form

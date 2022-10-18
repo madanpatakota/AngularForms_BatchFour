@@ -26,5 +26,10 @@ export class TdaComponent implements OnInit {
     console.log(form.value.PrinicipleName);
   }
 
+  evtSubmit(form:NgForm){
+    console.log("submit the form...");
+    console.log(form);
+  }
+
 
 }
