@@ -1,9 +1,8 @@
-<div  style="margin: 50px; padding: 50px" class="container">
+<div style="margin: 50px; padding: 50px" class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="evtSubmit(form)" #form="ngForm">
         <div>
-
           <!-- schoolname control -->
           <div class="form-group">
             <label class="col-form-label">SchoolName</label>
@@ -11,7 +10,6 @@
             you have to use ngmodel directive -->
             <!-- ngmodel  formmodule int the appmodule -->
 
-           
             <!-- ngModel we are going to the the details about the contorl -->
             <!-- touch and pristine is true -->
 
@@ -24,15 +22,20 @@
               placeholder="Enter the Schoolname"
               ngModel
               name="schoolName"
-              #schoolName = "ngModel"
+              #schoolName="ngModel"
               required
             />
-            <small style="color:#9d3b3b"
-              *ngIf="schoolName.touched && schoolName.pristine">
-              Please enter the SchoolName</small>
+            <small
+              style="color: #9d3b3b"
+              *ngIf="schoolName.touched && schoolName.pristine"
+            >
+              Please enter the SchoolName</small
+            >
           </div>
-         
-          <!-- prinicple control -->
+
+          <div name="principleGroupID" ngModelGroup="principleGroupID"
+           #principleGroupID="ngModelGroup">
+            <!-- prinicple control -->
             <div class="form-group">
               <label class="col-form-label">Principle Name</label>
               <input
@@ -41,11 +44,86 @@
                 placeholder="Enter the PrinicipleName"
                 ngModel
                 name="PrinicipleName"
-                #principle = "ngModel"
+                #principle="ngModel"
               />
-              <small style="color:#9d3b3b" *ngIf="principle.touched && principle.pristine">
-                Please enter the Principle name</small>
+              <small
+                style="color: #9d3b3b"
+                *ngIf="principle.touched && principle.pristine"
+              >
+                Please enter the Principle name</small
+              >
             </div>
+
+            <!-- prinicple Email minlength control -->
+            <div class="form-group">
+              <label class="col-form-label">Principle Email</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the Principle EmailID"
+                ngModel
+                name="PrinicipleEmailID"
+                #PrinicipleEmailID="ngModel"
+                required
+                email
+                minlength="20"
+              />
+
+              <!-- not only mandatory but also decarate with email -->
+              <!-- <small style="color:#9d3b3b" 
+              *ngIf="PrinicipleEmailID.dirty && PrinicipleEmailID.invalid">
+              Please enter the PrinicipleEmailID</small> -->
+
+              <!-- Cannot read properties of null (reading 'required') -->
+              <small
+                style="color: #9d3b3b"
+                *ngIf="PrinicipleEmailID.errors?.['required']
+               && PrinicipleEmailID.touched"
+              >
+                Please enter the prinicaple email</small
+              >
+              <!-- <br> -->
+              <small
+                style="color: #9d3b3b"
+                *ngIf="PrinicipleEmailID.errors?.['email']
+               && PrinicipleEmailID.touched"
+              >
+                Please enter the valid email of prinicple</small
+              >
+              <!-- <br> -->
+
+              <!-- minlength
+: 
+{requiredLength: 20, actualLength: 11} -->
+
+              <small
+                style="color: #9d3b3b"
+                *ngIf="PrinicipleEmailID.errors?.['minlength']
+               && PrinicipleEmailID.touched"
+              >
+                Please enter atleast 20 charcters</small
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label">Location</label>
+            <select
+              name="LocationID"
+              class="form-control"
+              #LocationID="ngModel"
+              ngModel
+            >
+              <option>Hsrlayout</option>
+              <option>Slikboard</option>
+            </select>
+            <span
+              style="color: #9d3b3b"
+              *ngIf="LocationID.touched && LocationID.pristine"
+            >
+              Please enter the SchoolName
+            </span>
+          </div>
 
           <!-- button code -->
           <div class="form-group" style="margin-top: 20px">
@@ -59,20 +137,25 @@
               Click
             </button> -->
 
-
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button [disabled]="form.invalid" class="btn btn-primary" type="submit">Submit</button>
 
             <!-- button type submit -->
             <!-- if you want to submit the form
             through the button we have to use button type
             submit -->
-
-
-
           </div>
-
         </div>
       </form>
     </div>
   </div>
+
+  <div *ngIf="form.valid" class="row">
+    <p> SchoolID : {{schoolDetails.schoolName}}</p>
+    <p> LocationID : {{schoolDetails.LocationID}}</p>
+    <p> PrinicipleEmailID : {{schoolDetails.PrinicipleEmailID}}</p>
+    <p> PrinicipleName : {{schoolDetails.PrinicipleName}}</p>
+
+  </div>
+
+
 </div>

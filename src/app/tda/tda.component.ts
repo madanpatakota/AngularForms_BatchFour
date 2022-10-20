@@ -26,9 +26,14 @@ export class TdaComponent implements OnInit {
     console.log(form.value.PrinicipleName);
   }
 
+  schoolDetails:any = {}
   evtSubmit(form:NgForm){
     console.log("submit the form...");
     console.log(form);
+    this.schoolDetails.schoolName = form.value.schoolName;
+    this.schoolDetails.LocationID = form.value.LocationID;
+    this.schoolDetails.PrinicipleEmailID = form.value.principleGroupID.PrinicipleEmailID;
+    this.schoolDetails.PrinicipleName = form.value.principleGroupID.PrinicipleName;
   }
 
   // ex : textbox you are expecting atleast 4 charcters
