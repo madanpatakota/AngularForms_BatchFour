@@ -47,24 +47,22 @@
                 name="PrinicipleName"
                 formControlName="PrinicipleName"
               />
-            
-              <small 
-              *ngIf="schoolForm.get('PrinicipleName').touched 
-                  && schoolForm.get('PrinicipleName').errors?.['required']" 
-                style="color: #9d3b3b">
-                Please enter the Principle name</small>
 
-
-                <small 
+              <small
                 *ngIf="schoolForm.get('PrinicipleName').touched 
-                    && schoolForm.get('PrinicipleName').errors?.['minlength']" 
-                  style="color: #9d3b3b">
-                  Please enter atleast 15 charcters</small>
+                  && schoolForm.get('PrinicipleName').errors?.['required']"
+                style="color: #9d3b3b"
+              >
+                Please enter the Principle name</small
+              >
 
-
-            
-              
-
+              <small
+                *ngIf="schoolForm.get('PrinicipleName').touched 
+                    && schoolForm.get('PrinicipleName').errors?.['minlength']"
+                style="color: #9d3b3b"
+              >
+                Please enter atleast 15 charcters</small
+              >
             </div>
 
             <!-- prinicple Email minlength control -->
@@ -78,16 +76,21 @@
                 formControlName="PrinicipleEmailID"
               />
 
-              <small  *ngIf="schoolForm.get('PrinicipleEmailID').touched 
-              && schoolForm.get('PrinicipleEmailID').errors?.['required']"  style="color: #9d3b3b">
+              <small
+                *ngIf="schoolForm.get('PrinicipleEmailID').touched 
+              && schoolForm.get('PrinicipleEmailID').errors?.['required']"
+                style="color: #9d3b3b"
+              >
                 Please enter the prinicaple email</small
               >
 
-              <small *ngIf="schoolForm.get('PrinicipleEmailID').touched 
-              && schoolForm.get('PrinicipleEmailID').errors?.['email']" style="color: #9d3b3b">
+              <small
+                *ngIf="schoolForm.get('PrinicipleEmailID').touched 
+              && schoolForm.get('PrinicipleEmailID').errors?.['email']"
+                style="color: #9d3b3b"
+              >
                 Please enter the valid email of prinicple</small
               >
-              
             </div>
           </div>
 
@@ -103,12 +106,68 @@
 
           <!-- button control -->
           <div class="form-group" style="margin-top: 20px">
-            <button class="btn btn-primary" type="submit" (click)="evtSubmit()">
+            <button class="btn btn-primary" (click)="evtSubmit()">
               Submit
             </button>
+            |
           </div>
+        </div>
+      </form>
+
+      <hr />
+
+      <!-- 
+        1. taking the formgroup
+        2. taking the formgroup < form array
+        3. in the array set of formgroups
+        4. each formgroup contains 2 controls ( stuname , stuclass)
+       -->
+
+      <form [formGroup]="studentFormGroup">
+        <div formArrayName="StudentDetails">
+          <div class="form-group"
+           *ngFor="let item of  studentFormArray.controls;let $index = index">
+           {{$index}}
+            <div formGroupName="{{$index}}" class="col-md-12 row">
+              <div class="col-md-4">
+                <input
+                  placeholder="StudentName"
+                  type="text"
+                  class="form-control"
+                  formControlName = 'StudentName'
+                />
+                <small  style="color:#9d3b3b"
+                *ngIf="studentFormArray.controls[$index].get('StudentName').touched 
+                &&
+                studentFormArray.controls[$index].get('StudentName').invalid">
+                Please enter the Student Name
+                </small>
+              </div>
+              <div class="col-md-4">
+                <input
+                  placeholder="StudentClass"
+                  type="text"
+                  class="form-control"
+                  formControlName = "StudenClass"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <button class="btn btn-secondary" (click)="evtAdd()">Add the Student</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+
+<!-- 1. why 0th index is not working?  you need to understand in the console log ngform object
+2. apply seond textbox
+3. show the student records in the table? -->
+
+<!-- required , min , max -->
+<!-- custom validators both in reactive and template -->
+
+<!-- 7:30 pm to 8:30pm -->

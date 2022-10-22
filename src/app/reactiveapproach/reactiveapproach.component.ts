@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactiveapproach',
@@ -18,7 +18,8 @@ export class ReactiveapproachComponent implements OnInit {
   // needs to configure to the html
 
   //prepare and configure to the html
-  schoolForm : FormGroup
+  schoolForm : FormGroup;
+  studentFormGroup : FormGroup;
 
   ngOnInit(): void {
       this.schoolForm = new FormGroup({
@@ -34,10 +35,48 @@ export class ReactiveapproachComponent implements OnInit {
         LocationName : new FormControl(null,
               [ Validators.required])
       })
+
+      // 1. i am going to create the studentname and studentclass
+      
+      // Array of students
+      //  {
+      // Ex : [ Sreeni    1ststandard   --- 1st group
+      //      Anji      UKG           --  2nd group
+      //      Praveen    Lkg
+      //      trivikarm  Lkg   ]
+      //  }
+
+      // prepare the code .. i need to configure
+      this.studentFormGroup = new FormGroup({
+        StudentDetails : new FormArray([
+          new FormGroup({
+              'StudentName' : new FormControl(),
+              'StudenClass' : new FormControl()
+          })
+        ])
+      })
   }
+
+  get studentFormArray() : FormArray{
+    return this.studentFormGroup.get('StudentDetails') as FormArray;
+  }
+
+
+ 
 
   evtSubmit(){
     console.log(this.schoolForm);
+  }
+
+  evtAdd(){
+     let studentarray = this.studentFormGroup.get('StudentDetails') as FormArray;
+     studentarray.push(
+          new FormGroup({
+            'StudentName' : new FormControl(null,[Validators.required]),
+            'StudenClass' : new FormControl()
+          })
+     )
+      console.log(this.studentFormGroup);
   }
 
 
