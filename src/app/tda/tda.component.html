@@ -67,7 +67,10 @@
                 required
                 email
                 minlength="20"
+                appGmail
               />
+
+              <!-- i am going to use gmail as the custom validator writing the code into it -->
 
               <!-- not only mandatory but also decarate with email -->
               <!-- <small style="color:#9d3b3b" 
@@ -82,7 +85,7 @@
               >
                 Please enter the prinicaple email</small
               >
-              <!-- <br> -->
+              <br>
               <small
                 style="color: #9d3b3b"
                 *ngIf="PrinicipleEmailID.errors?.['email']
@@ -90,7 +93,7 @@
               >
                 Please enter the valid email of prinicple</small
               >
-              <!-- <br> -->
+              <br>
 
               <!-- minlength
 : 
@@ -103,6 +106,17 @@
               >
                 Please enter atleast 20 charcters</small
               >
+
+              <br>
+              <small
+                style="color: #9d3b3b"
+                *ngIf="PrinicipleEmailID.errors?.['isNotValidDomain']
+               && PrinicipleEmailID.touched"
+              >
+                Please enter gmail only</small
+              >
+
+
             </div>
           </div>
 

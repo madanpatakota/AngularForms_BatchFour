@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { TdaComponent } from './tda/tda.component';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { ReactiveapproachComponent } from './reactiveapproach/reactiveapproach.component';
+import { GmailDirective } from './gmail.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TdaComponent,
-    ReactiveapproachComponent
+    ReactiveapproachComponent,
+    GmailDirective
   ],
   imports: [
     BrowserModule,

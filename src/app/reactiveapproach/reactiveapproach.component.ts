@@ -29,9 +29,9 @@ export class ReactiveapproachComponent implements OnInit {
         PrinicipleName : new FormControl(null,
           [ Validators.required, 
             Validators.minLength(15)]),
-        PrinicipleEmailID : new FormControl(null,
+        PrinicipleEmailID : new FormControl(null,     // gmail yahoo hotmail microsoft 
               [ Validators.required, 
-                Validators.email]),
+                Validators.email , this.EmailDomain]),
         LocationName : new FormControl(null,
               [ Validators.required])
       })
@@ -56,6 +56,28 @@ export class ReactiveapproachComponent implements OnInit {
         ])
       })
   }
+
+  // 1. custom validator based on the ra
+  // you should create thef unction
+
+  // configure that function to the validators section
+  // we are targinng the schoole mail is the formcontrol
+
+  //any                                          { "isNotValidDomain" : true}
+  EmailDomain(schoolemailControl:FormControl) :  {  [key:string]      : boolean } | null {
+    let value:string = schoolemailControl.value;                // "madan@yahoo.com"
+    if( value != null){
+       let emailValue = value.split("@");                    //;["madan","yahoo.com"]
+       if(emailValue[1] != "gmail.com"){
+            return {
+               "isNotValidDomain" : true
+            }
+       }
+    }
+    return null;
+  }
+
+
 
   get studentFormArray() : FormArray{
     return this.studentFormGroup.get('StudentDetails') as FormArray;

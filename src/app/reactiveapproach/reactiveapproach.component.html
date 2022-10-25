@@ -91,6 +91,17 @@
               >
                 Please enter the valid email of prinicple</small
               >
+
+
+              <small
+                *ngIf="schoolForm.get('PrinicipleEmailID').touched 
+              && schoolForm.get('PrinicipleEmailID').errors?.['isNotValidDomain']"
+                style="color: #9d3b3b"
+              >
+                Please enter the gmail emailID only..</small
+              >
+
+
             </div>
           </div>
 
